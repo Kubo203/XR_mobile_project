@@ -1,12 +1,15 @@
 # ⛪ Cerkov & Anjeli — XR Mobilná Hra
 
-## 🎬 Demo video
-
-
-|                                       |
-| ------------------------------------- |
-| ▶️ Kliknutím prehráte demo na YouTube |
-
+<h2 align="center">🎬 Demo video</h2>
+<table align="center">
+  <tr>
+    <td align="center">
+      <a href="https://youtu.be/8mL0amH_G-Y">
+        <img src="https://img.youtube.com/vi/8mL0amH_G-Y/maxresdefault.jpg" width="480" alt="XR hra – demo video">
+      </a>
+    </td>
+  </tr>
+</table>
 
 ---
 
