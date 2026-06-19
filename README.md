@@ -1,93 +1,231 @@
-# Zadania_SVR_Jakub_Filicko
+# ⛪ Cerkov & Anjeli — XR Mobilná Hra
+
+## 🎬 Demo video
 
 
+|                                       |
+| ------------------------------------- |
+| ▶️ Kliknutím prehráte demo na YouTube |
 
-## Getting started
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+---
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+## O Projekte
 
-## Add your files
+Tento projekt je **interaktívna XR (Extended Reality) mobilná hra** vytvorená v engine **Unity** v rámci predmetu **Systémy Virtuálnej Reality (SVR)**.
 
-* [Create](https://docs.gitlab.com/user/project/repository/web_editor/#create-a-file) or [upload](https://docs.gitlab.com/user/project/repository/web_editor/#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+Hráč sa pohybuje vo vlastnom 3D svete s **kostolíkom (cerkov)** vymodelovaným v programe **SketchUp**. Keď hráč vojde do určenej zóny, **spustí sa udalosť** — z neba začnú **zostupovať anjeli** s mávajúcimi krídlami, ktorí po pristátí pokojne **levitujú** nad zemou.
+
+### Cieľ Projektu
+
+Hlavným cieľom projektu je:
+
+- Vytvoriť **vlastný 3D svet** s objektom vymodelovaným v SketchUp
+- Pridať **interaktívne prvky** a reakcie na pohyb hráča
+- Implementovať **collision (kolíznu) interakciu**, ktorá slúži ako *trigger* (spúšťač) udalosti
+- Využiť **vstavané XR nástroje Unity** na nasadenie aplikácie do mobilného telefónu (**iPhone**)
+- Umožniť **plynulé ovládanie pohybu** dotykom na mobilnom zariadení
+
+---
+
+## ✨ Hlavné Prvky
+
+- **Kostolík (Cerkov)** — vlastný 3D model vytvorený v SketchUp
+- **Anjeli** — vymodelovaní v rovnakom štýle ako kostolík (krídla sú prevzaté), s **animáciou letu a levitácie**
+- **Trigger zóna** — pri vstupe hráča do zóny sa spustí zostup anjelov (kolízna detekcia)
+- **AR / XR režim** — aplikácia beží na iPhone s možnosťou zapnutia/vypnutia kamery (AR pozadie)
+- **Mobilné ovládanie** — virtuálny joystick na pohyb + tlačidlo na šprint
+- **Desktopové ovládanie (WASD)** — pomocné ovládanie pre testovanie na PC
+
+---
+
+## 🛠️ Použité Technológie
+
+- **Unity** (Universal Render Pipeline — URP)
+- **AR Foundation** — `ARCameraBackground`, XR Origin
+- **XR Plugin Management** — nasadenie na mobil
+- **SketchUp** — modelovanie kostolíka (`.skp`)
+- **C#** — herná logika a skripty
+- **Joystick Pack** — mobilné dotykové ovládanie
+- **Fantasy Skybox** + **Terrain** — prostredie sveta
+
+---
+
+## 📦 Obsah Projektu
 
 ```
-cd existing_repo
-git remote add origin https://git.kpi.fei.tuke.sk/jakub.filicko/zadania_svr_jakub_filicko.git
-git branch -M main
-git push -uf origin main
+na odovzdanie/
+├── XR_hra/                         # Unity projekt (XR hra)
+│   ├── Assets/
+│   │   ├── Scripts/                # Herné C# skripty
+│   │   │   ├── AngelDescent.cs         # Zostup + levitácia + animácia krídel
+│   │   │   ├── AngelTriggerZone.cs     # Kolízna trigger zóna
+│   │   │   ├── JoystickMovement.cs     # Mobilný pohyb (joystick + šprint)
+│   │   │   ├── DesktopWASDControls.cs  # Pomocné WASD ovládanie (PC)
+│   │   │   └── ARCameraToggle.cs       # Prepínanie AR pozadia (On/Off)
+│   │   ├── my_models/              # Vlastné modely (Cerkov.skp, anjel.fbx)
+│   │   ├── Scenes/                 # Herná scéna (SampleScene.unity)
+│   │   ├── Joystick Pack/          # Knižnica mobilného joysticku
+│   │   └── Fantasy Skybox FREE/    # Skybox prostredia
+│   ├── ProjectSettings/
+│   └── Packages/
+├── Cerkov17.skp                    # SketchUp model kostolíka
+├── Anaglyf/                        # Anaglyfické 3D snímky (ďalšia úloha)
+└── NeRF_Gaussian_Splatting_essay.docx  # Esej (ďalšia úloha)
 ```
 
-## Integrate with your tools
+---
 
-* [Set up project integrations](https://git.kpi.fei.tuke.sk/jakub.filicko/zadania_svr_jakub_filicko/-/settings/integrations)
+## ▶️ Inštalácia a Spustenie
 
-## Collaborate with your team
+### Otvorenie projektu v Unity
 
-* [Invite team members and collaborators](https://docs.gitlab.com/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/user/project/merge_requests/creating_merge_requests/)
-* [Automatically close issues from merge requests](https://docs.gitlab.com/user/project/issues/managing_issues/#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+1. Rozbaľte archív a otvorte priečinok `XR_hra` v **Unity Hub** (odporúčaná verzia podľa `ProjectSettings`).
+2. Otvorte scénu `Assets/Scenes/SampleScene.unity`.
+3. Stlačte **Play** pre spustenie v editore (na PC použite WASD ovládanie).
 
-## Test and Deploy
+### Nasadenie na iPhone
 
-Use the built-in continuous integration in GitLab.
+1. V `Build Settings` zvoľte platformu **iOS**.
+2. Skontrolujte nastavenia **XR Plug-in Management** a **AR Foundation**.
+3. Vytvorte build a nasaďte projekt cez **Xcode** do zariadenia.
 
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/topics/autodevops/requirements/)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ci/environments/protected_environments/)
+---
 
-***
+## 🎮 Návod na Používanie
 
-# Editing this README
+### Na mobile (iPhone)
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+- **Ľavý joystick** — pohyb hráča vo svete
+- **Tlačidlo Šprint** — zrýchlený pohyb
+- **Tlačidlo AR On / AR Off** — zapnutie/vypnutie kamery (AR pozadia)
+- **Príď ku kostolíku** — vstupom do trigger zóny privoláš zostup anjelov 👼
 
-## Suggestions for a good README
+### Na PC (testovanie)
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+- **WASD / šípky** — pohyb
+- **Myš** — otáčanie pohľadu
+- **Shift** — šprint
+- **ESC** — uvoľnenie kurzora
 
-## Name
-Choose a self-explaining name for your project.
+---
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+## 🔍 Ako Funguje Interakcia
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+1. Anjeli sú na začiatku **skrytí** (`AngelDescent` ich na štarte zneviditeľní).
+2. Keď hráč vojde do kolíznej zóny, `AngelTriggerZone` zavolá `TriggerArrival()`.
+3. Anjeli sa **zobrazia**, spustí sa **animácia letu krídel** a začnú **zostupovať** zhora nadol (plynulý `SmoothStep`).
+4. Po pristátí anjeli **navždy levitujú** (jemný pohyb hore/dole pomocou sínusovej funkcie).
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+---
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+## 👤 Autor
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+**Jakub Filičko**
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+Predmet: Systémy Virtuálnej Reality (SVR)
+Katedra počítačov a informatiky
+Technická univerzita v Košiciach
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+---
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+  
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+# ⛪ Church & Angels — XR Mobile Game (English)
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+## About the Project
 
-## License
-For open source projects, say how it is licensed.
+This project is an **interactive XR (Extended Reality) mobile game** built in the **Unity** engine for the **Virtual Reality Systems (SVR)** course.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+The player walks through a custom 3D world featuring a **small church (cerkov)** modeled in **SketchUp**. When the player enters a designated zone, an **event is triggered** — **angels descend** from the sky with flapping wings and, once they land, calmly **levitate** above the ground.
+
+### Project Goals
+
+The main goals of the project are:
+
+- Create a **custom 3D world** with an object modeled in SketchUp
+- Add **interactive elements** that react to the player's movement
+- Implement a **collision interaction** that acts as a *trigger* for an event
+- Use Unity's **built-in XR tools** to deploy the app to a mobile phone (**iPhone**)
+- Provide **smooth touch-based movement controls** on the mobile device
+
+---
+
+## ✨ Key Features
+
+- **Church (Cerkov)** — custom 3D model created in SketchUp
+- **Angels** — modeled in the same style as the church (wings are borrowed), with **flight and levitation animation**
+- **Trigger zone** — entering the zone starts the angels' descent (collision detection)
+- **AR / XR mode** — runs on iPhone with a toggle for the camera background (AR On/Off)
+- **Mobile controls** — virtual joystick for movement + sprint button
+- **Desktop controls (WASD)** — helper controls for testing on PC
+
+---
+
+## 🛠️ Tech Stack
+
+- **Unity** (Universal Render Pipeline — URP)
+- **AR Foundation** — `ARCameraBackground`, XR Origin
+- **XR Plugin Management** — mobile deployment
+- **SketchUp** — church modeling (`.skp`)
+- **C#** — game logic and scripts
+- **Joystick Pack** — mobile touch controls
+- **Fantasy Skybox** + **Terrain** — world environment
+
+---
+
+## ▶️ Installation and Running
+
+### Open the project in Unity
+
+1. Extract the archive and open the `XR_hra` folder in **Unity Hub** (use the version recommended in `ProjectSettings`).
+2. Open the scene `Assets/Scenes/SampleScene.unity`.
+3. Press **Play** to run in the editor (use WASD controls on PC).
+
+### Deploy to iPhone
+
+1. In `Build Settings`, select the **iOS** platform.
+2. Verify **XR Plug-in Management** and **AR Foundation** settings.
+3. Build and deploy the project to the device via **Xcode**.
+
+---
+
+## 🎮 Quick User Guide
+
+### On mobile (iPhone)
+
+- **Left joystick** — move the player around the world
+- **Sprint button** — faster movement
+- **AR On / AR Off button** — toggle the camera (AR background)
+- **Walk up to the church** — entering the trigger zone summons the descending angels 👼
+
+### On PC (testing)
+
+- **WASD / arrows** — movement
+- **Mouse** — look around
+- **Shift** — sprint
+- **ESC** — release the cursor
+
+---
+
+## 🔍 How the Interaction Works
+
+1. The angels are **hidden** at the start (`AngelDescent` makes them invisible on start).
+2. When the player enters the collision zone, `AngelTriggerZone` calls `TriggerArrival()`.
+3. The angels **appear**, the **wing flight animation** plays, and they begin to **descend** from above (smooth `SmoothStep` motion).
+4. After landing, the angels **levitate forever** (gentle up/down motion via a sine function).
+
+---
+
+## 👤 Author
+
+**Jakub Filičko**
+
+Course: Virtual Reality Systems (SVR)
+Department of Computers and Informatics
+Technical University of Košice
+
+---
+
+**Verzia / Version**: 1.0
